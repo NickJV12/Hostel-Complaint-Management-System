@@ -7,7 +7,7 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:8093/auth/forgot-password", {
+    Axios.post("https://hostel-complaint-management-webapp.onrender.com/auth/forgot-password", {
       email,
     })
       .then((response) => {
