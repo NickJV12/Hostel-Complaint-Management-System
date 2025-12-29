@@ -7,7 +7,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #333;
-  box-shadow: 0 6px 12px rgb(88, 219, 106);
+  
 }
 
 .register-complaint h2 {
@@ -44,7 +44,7 @@
   width: 100%;
   padding: 10px;
   color: #fff;
-  background-color: #4ECCA3;
+  background-color: #744ecc;
   border: none;
   border-radius: 4px;
   font-size: 16px;
@@ -52,5 +52,19 @@
 }
 
 .submit-button:hover {
-  background-color: #156a2e;
+  background-color: rgba(255, 255, 255, 0.1);
 }
+textarea#description {
+  color: black;                /* Text typed inside textarea */
+  background-color: #fff;      /* Ensure white background for contrast */
+  height: auto;                /* Allow height to be determined by rows attribute */
+  min-height: 100px;           /* Provide a decent height */
+  resize: vertical;            /* Optional: allow resizing */
+}
+
+/* Placeholder styling */
+textarea#description::placeholder {
+  color: black;
+  opacity: 1;
+}
+
