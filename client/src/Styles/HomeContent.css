@@ -14,7 +14,6 @@
 }
 
 .home-heading{
-<<<<<<< HEAD
   position: relative;
   text-align: center;
   font-size: 5vw;
@@ -23,16 +22,6 @@
   margin-top: 1.5em;
   /* -webkit-text-stroke: 0.3vw rgb(170, 170, 204);
   text-transform: uppercase; */
-=======
-    position: relative;
-    text-align: center;
-    font-size: 5vw;
-    /* color: linear-gradient(to top, #ffffff 0%, #9491b8c6 100%); */
-    color: azure;
-    margin-top: 1.5em;
-    /* -webkit-text-stroke: 0.3vw rgb(170, 170, 204);
-    text-transform: uppercase; */
->>>>>>> 081e16fdf29de05245ed3e461a799663964c5cc8
 
 }
 
@@ -46,19 +35,11 @@
   }
 }
 .para {
-<<<<<<< HEAD
   margin-top: 1em;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   color: blanchedalmond;
 }
-=======
-    margin-top: 1em;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    color: blanchedalmond;
-  }
->>>>>>> 081e16fdf29de05245ed3e461a799663964c5cc8
 .header {
   text-align: center;
 }
