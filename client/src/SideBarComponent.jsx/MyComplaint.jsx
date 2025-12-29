@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import "../Styles/MyComplaint.css";
 const MyComplaint = () => {
   const [complaints, setComplaints] = useState([]);
   const userId = localStorage.getItem("userId");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (userId) {
@@ -11,34 +13,13 @@ const MyComplaint = () => {
     } else {
       console.error("User not logged in");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  // const fetchComplaints = async () => {
-  //   try {
-  //     const response = await Axios.get(
-  //       `http://localhost:8093/api/mycomplaint`,
-  //       {
-  //         headers: { userId },
-  //       }
-  //     );
-  //     console.log("API Response:", response.data); // Log the entire response
-  //     setComplaints(response.data.complaints || []);
-  //   } catch (error) {
-  //     console.error("Error fetching complaints:", error);
-  //     setComplaints([]); // Set to empty array on error
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchComplaints();
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
+  
   const fetchUserComplaints = async () => {
     try {
       const response = await Axios.get(
-        "http://localhost:8093/api/mycomplaint",
+        "https://hostel-complaint-management-webapp.onrender.com/api/mycomplaint",
         {
           headers: { userid: userId },
         }
@@ -61,7 +42,7 @@ const MyComplaint = () => {
   // Submit feedback
   const handleSubmitFeedback = async (id, feedback) => {
     try {
-      await Axios.put(`http://localhost:8093/complaints/feedback/${id}`, {
+      await Axios.put(`https://hostel-complaint-management-webapp.onrender.com/complaints/feedback/${id}`, {
         feedback: feedback,
       });
       fetchUserComplaints(); // Refresh complaints after feedback submission
@@ -72,6 +53,9 @@ const MyComplaint = () => {
 
   return (
     <div className="my-complaints">
+      <button className="back-button" onClick={() => navigate("/home")}>
+        ⬅ Back To Home
+      </button>
       <h1>My Complaints</h1>
       <table className="complaints-table">
         <thead>
@@ -99,6 +83,7 @@ const MyComplaint = () => {
                   {complaint.status === "resolved" ? (
                     <div>
                       <textarea
+                        className="feedback-textarea"
                         placeholder="Enter feedback"
                         value={complaint.feedback || ""}
                         onChange={(e) =>
