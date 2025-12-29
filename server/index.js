@@ -1,4 +1,3 @@
-// server/index.js
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -26,7 +25,7 @@ cron.schedule("0 0 * * *", () => {
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173" , "https://hostel-complaint-management-system.netlify.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -35,7 +34,7 @@ app.use(cookieParser());
 
 // Connect to the hostelmanagement database
 mongoose
-  .connect("mongodb+srv://aditisonkar2409:1234@cluster4.due5n.mongodb.net/")
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("Connected to hostelmanagement database"))
   .catch((error) => console.error("Database connection error:", error));
 
@@ -47,9 +46,12 @@ app.use("/complaints", complaintRoutes);
 app.use("/api", adminRoutes);
 app.use("/admincomplaint", adminRoutes);
 
-// app.use("/api/complaints", complaintRoutes);
 app.use("/admincomplaint", adminComplaintRoutes); // Admin-specific complaint routes
 app.use("/complaints", graphRoutes);
+
+app.get('/', (req, res) => {
+  res.send('Backend is running 🚀');
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
