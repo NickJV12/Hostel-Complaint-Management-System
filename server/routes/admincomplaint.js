@@ -1,4 +1,3 @@
-// routes/complaints.js
 import express from "express";
 import Complaint from "../models/Complaint.js";
 
@@ -16,7 +15,21 @@ router.get("/all", async (req, res) => {
 
   try {
     const complaints = await Complaint.find(filter);
-    res.status(200).json(complaints);
+
+    // Hide userId if complaint is anonymous
+    const sanitizedComplaints = complaints.map((complaint) => {
+      const obj = complaint.toObject();
+
+      if (obj.isAnonymous) {
+        obj.userId = "Anonymous";
+        obj.userName = "Anonymous";
+        obj.roomNumber = "Hidden";
+      }
+
+      return obj;
+    });
+
+    res.status(200).json(sanitizedComplaints);
   } catch (error) {
     console.error("Error fetching complaints:", error);
     res.status(500).json({ error: "Failed to fetch complaints" });
