@@ -8,7 +8,7 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:8093/auth/reset-password/" + token, {
+    Axios.post("https://hostel-complaint-management-webapp.onrender.com/auth/reset-password/" + token, {
       password,
     })
       .then((response) => {
