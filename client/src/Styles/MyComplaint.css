@@ -50,5 +50,34 @@ h2 {
 .complaints-table th:first-child, .complaints-table td:first-child {
   text-align: center;
 }
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  background-color: #744ecc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-  
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.feedback-textarea {
+  color: black;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 14px;
+}
+.feedback-textarea::placeholder {
+  color: black;
+  opacity: 0.8; 
+}
+
+
