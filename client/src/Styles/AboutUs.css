@@ -1,13 +1,13 @@
 .init-para{
-    color: rgb(0, 0, 0);
+    color: bisque;
     font-size: x-large;
     text-align: center;
     margin-bottom: 2rem;
 }
-.heading{
-    color: bisque;
-    text-align: center;
-    margin-bottom: 5rem;
+.heading {
+  color: #ffccff;
+  margin: 20px 0;
+  text-align: center;
 }
 
 .main-row{
@@ -26,8 +26,35 @@
     gap: 20px;
 }
 .icon-col{
-    color: rgb(35, 31, 31);
+    color: rgb(240, 138, 223);
 }
 .info-mation{
     font-weight: 100;
+}
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  background-color: #744ecc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.back-button:hover {
+  background-color: #ab8af8;
+}
+
+.icon-col {
+  font-size: 24px;
+  color: black;
+  transition: transform 0.2s;
+}
+
+.icon-col:hover {
+  transform: scale(1.2);
+  color: #8a2be2;
 }
