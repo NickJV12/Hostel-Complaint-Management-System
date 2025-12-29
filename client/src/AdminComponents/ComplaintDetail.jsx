@@ -1,4 +1,3 @@
-// src/AdminComponents/ComplaintDetail.jsx
 import { useState } from "react";
 import Axios from "axios";
 
@@ -8,7 +7,7 @@ const ComplaintDetail = ({ complaint }) => {
   const [adminResponse, setAdminResponse] = useState(complaint.adminResponse || "");
 
   const handleUpdate = () => {
-    Axios.put(`http://localhost:8093/complaints/update/${complaint._id}`, {
+    Axios.put(`https://hostel-complaint-management-webapp.onrender.com/complaints/update/${complaint._id}`, {
       status,
       adminResponse,
     })
