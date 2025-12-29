@@ -1,45 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-*
-{
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-
 }
 
-/* Input fields styling */
-input {
-  /* width: 100%; */
+/* ✅ Input fields - only inside Admin Dashboard */
+.admin-dashboard input,
+.admin-dashboard select {
   padding: 10px;
-  /* margin-bottom: 15px; */
-  border:none;
+  border: none;
   outline: none;
   height: 40px;
   border-radius: 10px;
-  /* font-size: 16px; */
-  
-  
 }
 
-/* Dropdown Styling */
-select {
- /* width: 100%; */
- padding: 10px;
- /* margin-bottom: 15px; */
- border:none;
- outline: none;
- height: 40px;
- border-radius: 10px;
- /* font-size: 16px; */
-}
-
-/* Hover effect on dropdown */
-select:hover {
-  border-color: #888;
-}
-
-.my-btn {
+/* ✅ Button Styling - scoped */
+.admin-dashboard .my-btn {
   width: 130px;
   height: 47px;
   border: none;
@@ -52,23 +31,11 @@ select:hover {
   font-weight: bold;
 }
 
-.my-btn:hover {
+.admin-dashboard .my-btn:hover {
   transform: translateY(-3px);
   background-color: var(--button-hover-bg);
   box-shadow: 0 8px 20px var(--button-hover-shadow);
 }
-
-/* Add media query for smaller screen sizes */
-@media (max-width: 600px) {
-  .my-btn {
-    font-size: 14px; /* Reduce font size on smaller screens */
-    padding: 10px; /* Adjust padding to make it more compact */
-  }
-}
-.container p {
-  color: beige;
-}
-
 
 /* Error message Styling */
 .error-message {
@@ -87,69 +54,52 @@ label {
   color: #333;
 }
 
-/* Responsive styling */
-@media (max-width: 600px) {
-  .container {
-    width: 90%;
-  }
-
-  input,
-  select,
-  .my-btn {
-    font-size: 14px;
-  }
+/* Container for Admin form only */
+.admin-dashboard .container {
+  background-color: #333;
+  padding: 40px 60px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(138, 224, 161, 0.927);
+  width: auto;
+  max-width: 90%;
+  margin-top: 20px;
 }
-body{
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(to top, #010002fa 0%, #1a1a1dd3 100%);
-  background-repeat: no-repeat;
-  /* background-position: center; */
-  width: 100%;
-  height: 100vh;
+
+.admin-dashboard form {
   display: flex;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  
-  animation: gradient 15s ease infinite;
-  /* background-attachment: fixed; */
-}
-/* Reset default margins and padding */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* Fullscreen Dark Theme Background */
-html, body {
-  font-family: Arial, sans-serif;
-  background-color: #1e1e2f; /* Dark background color */
-  color: #dcdcdc;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden; /* Prevents scrollbars on body */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Typography */
+.container h2 {
+  color: beige;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 30px;
 }
 
-/* CSS to position the logout button to the right */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Logout Button */
 .logout-container {
-  display: flex;
-  justify-content: flex-end; /* Align the logout button to the right */
-  margin-bottom: 10px; /* Optional: Add some spacing between the button and the rest of the content */
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .logout-btn {
   background-color: #ff4d4d;
   color: white;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border: none;
   border-radius: 5px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 16px;
 }
 
 .logout-btn:hover {
@@ -158,21 +108,16 @@ html, body {
 
 /* Admin Dashboard Container */
 .admin-dashboard {
+  display: block;
   width: 100vw;
   height: 100vh;
   padding: 20px;
-  background: #2a2a3d; /* Slightly lighter shade for the dashboard panel */
+  background: #2a2a3d;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
 }
-.container h2 {
-  color: beige;
-}
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-/* Title Styling */
+
+/* Admin Dashboard Title */
 .admin-dashboard h1 {
   font-size: 26px;
   color: #ffffff;
@@ -180,7 +125,19 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Filters Section */
+/* Complaints Graph Button */
+.graph-btn-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.graph-btn-container {
+  display: inline-block;
+}
+
+/* Filters */
 .filters {
   display: flex;
   gap: 15px;
@@ -196,7 +153,8 @@ h2 {
   color: #a0a0b0;
 }
 
-.filters select, .filters button {
+.filters select,
+.filters button {
   padding: 10px;
   border-radius: 4px;
   border: 1px solid #5a5a6d;
@@ -204,16 +162,15 @@ h2 {
   color: #dcdcdc;
 }
 
-/* Updated Button Style */
 .filters button {
-  background: #5c6bc0; /* Softer, muted shade of indigo */
+  background: #5c6bc0;
   color: #ffffff;
   cursor: pointer;
   transition: background 0.3s;
 }
 
 .filters button:hover {
-  background: #1e85446f; /* Slightly darker shade on hover */
+  background: #1e85446f;
 }
 
 /* Complaints Table */
@@ -222,7 +179,8 @@ h2 {
   border-collapse: collapse;
 }
 
-.complaints-table th, .complaints-table td {
+.complaints-table th,
+.complaints-table td {
   padding: 12px 15px;
   border-bottom: 1px solid #444455;
 }
@@ -245,7 +203,6 @@ h2 {
   background: #393956;
 }
 
-/* Status Dropdown */
 .complaints-table select {
   padding: 5px;
   border-radius: 4px;
@@ -254,7 +211,6 @@ h2 {
   color: #dcdcdc;
 }
 
-/* Action Button */
 .complaints-table button {
   padding: 6px 12px;
   color: #ffffff;
@@ -270,7 +226,7 @@ h2 {
   background: #059669;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
   .filters {
     flex-direction: column;
@@ -281,52 +237,8 @@ h2 {
   }
 }
 
-.container{
-  background-color: #333;  /* Darker background for the box */
-    padding: 40px 60px;  /* Increased padding to make the box larger */
-    border-radius: 15px;  /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(138, 224, 161, 0.927);  /* Subtle shadow for emphasis */
-    width: auto;  /* Set width to auto to adjust according to content */
-    max-width: 90%;  /* Limit the maximum width to 90% of the page width */
-    margin-top: 20px;  /* Add some space from the main heading */
-}
-form{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-input{
-  border: none;
-  outline: none;
-  height: 30px;
-  border-radius: 10px;
-  padding: 10px;
-}
-h2{
-  font-weight: bold;
-  color: rgb(250, 238, 238);
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 30px;
-}
-.my-btn{
-  width: 130px;
-  height: 30px;
-  border: none;
-  outline: none;
-  border-radius: 20px;
-  margin-left: auto;
-  background-color: #4ECCA3;
-  font-size: 20px;
-  font-weight: bold;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-button:hover{
-    background-color: rgb(113, 193, 149);
-    
-}
-.circle{
+/* Decorative Ripple Circles */
+.circle {
   position: absolute;
   border-radius: 50%;
   background: white;
@@ -334,71 +246,76 @@ button:hover{
   box-shadow: 0px 0px 1px 0px #508fb9;
 }
 
-.small{
+.small {
   width: 200px;
   height: 200px;
   left: -100px;
   bottom: -100px;
 }
 
-.medium{
+.medium {
   width: 400px;
   height: 400px;
   left: -200px;
   bottom: -200px;
 }
 
-.large{
+.large {
   width: 600px;
   height: 600px;
   left: -300px;
   bottom: -300px;
 }
 
-.xlarge{
+.xlarge {
   width: 800px;
   height: 800px;
   left: -400px;
   bottom: -400px;
 }
 
-.xxlarge{
+.xxlarge {
   width: 1000px;
   height: 1000px;
   left: -500px;
   bottom: -500px;
 }
 
-.shade1{
+.shade1 {
   opacity: 0.2;
 }
-.shade2{
+.shade2 {
   opacity: 0.5;
 }
-
-.shade3{
+.shade3 {
   opacity: 0.7;
 }
-
-.shade4{
+.shade4 {
   opacity: 0.8;
 }
-
-.shade5{
+.shade5 {
   opacity: 0.9;
 }
 
-@keyframes ripple{
-  0%{
+@keyframes ripple {
+  0% {
     transform: scale(0.8);
   }
-  
-  50%{
+
+  50% {
     transform: scale(1.2);
   }
-  
-  100%{
+
+  100% {
     transform: scale(0.8);
   }
 }
 
+/* Center primary button in Signup/Login */
+.btn-primary {
+  margin: 0 auto;
+  display: block;
+}
+.feedback-textarea {
+  color: black;
+}
