@@ -9,7 +9,7 @@ const Dashboard = () => {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const res = await axios.get("http://localhost:8093/auth/verify");
+        const res = await axios.get("https://hostel-complaint-management-webapp.onrender.com/auth/verify");
 
         // Ensure to access the correct property based on your backend response
         if (res.data.status) {
