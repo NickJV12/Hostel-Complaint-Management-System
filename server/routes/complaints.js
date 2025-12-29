@@ -51,7 +51,9 @@ router.put("/update/:id", async (req, res) => {
     // Send update email for non-anonymous complaints
     if (!complaint.isAnonymous && complaint.email) {
       const transporter = nodemailer.createTransport({
-        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
         auth: {
           user: process.env.EMAIL_USER,
           pass: process.env.EMAIL_PASS,
