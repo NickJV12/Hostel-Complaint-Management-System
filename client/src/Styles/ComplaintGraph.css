@@ -8,7 +8,6 @@
   padding: 20px;
   background-color: #f1e3e3; /* Light lavender background */
   border-radius: 12px;
-  box-shadow: 0 6px 12px rgb(88, 219, 106); /* Soft shadow */
   display: flex;
   flex-direction: column;
   justify-content: center;
