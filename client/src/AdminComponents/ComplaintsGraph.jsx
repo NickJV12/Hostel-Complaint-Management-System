@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import "../Styles/ComplaintGraph.css";
@@ -6,12 +7,13 @@ import moment from 'moment-timezone';
 
 const MyChartComponent = () => {
   const [complaints, setComplaints] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchComplaints = async () => {
       const hostel = localStorage.getItem("hostel");
       try {
-        const response = await Axios.get("http://localhost:8093/complaints/graph-data", {
+        const response = await Axios.get("https://hostel-complaint-management-webapp.onrender.com/complaints/graph-data", {
           headers: { hostel: hostel },
         });
         console.log('Complaints data:', response.data); 
@@ -24,15 +26,16 @@ const MyChartComponent = () => {
   }, []);
 
   const formattedData = complaints.map(item => ({
-    //date: moment(item._id).tz("Asia/Kolkata").format("YYYY-MM-DD"),
-    // date: moment(item.date).format("YYYY-MM-DD"), // Format the date as YYYY-MM-DD
-    // count: item.count,
+    
     date: moment(item._id).tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm"), // Convert UTC date to IST
     count: item.count,
   }));
 
   return (
     <div className='graph-container'>
+      <button className="back-button" onClick={() => navigate("/admindashboard")}>
+        ⬅ Back
+      </button>
       <h3 style={{ textAlign: 'center', color: '#333' }}>Complaints Over Time</h3>
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={formattedData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
