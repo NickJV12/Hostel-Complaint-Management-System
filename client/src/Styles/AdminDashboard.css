@@ -1,139 +1,130 @@
-/* Global Settings */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
-    color: #333;
+.admin-dashboard {
     margin: 0;
-    padding: 0;
-  }
-  
-  /* Admin Dashboard Container */
-  .admin-dashboard {
-    max-width: 1200px;
-    margin: 20px auto;
     padding: 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .admin-dashboard h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  /* Filters Section */
-  .filters {
+    background-color: transparent;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
-    background: #eef2f5;
-    padding: 15px;
-    border-radius: 8px;
+    justify-content: flex-start; 
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+    h1 {
+    font-size: 30px; 
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0; 
+    padding: 0;
+    width: 100%;
+    line-height: 1.3; 
+    white-space: normal; 
+    overflow-wrap: break-word; 
+    word-wrap: break-word;
+    box-sizing: border-box;
+  }
+    @media (max-width: 768px) {
+    h1 {
+      font-size: 30px; 
+    }
   }
   
-  .filters label {
-    font-weight: 600;
-    color: #555;
-    margin-right: 5px;
+  .table-container {
+    overflow-x: auto; 
+    width: 100%; 
+    max-width: 100%; 
   }
   
-  .filters select {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background: #ffffff;
-  }
-  
-  .filters button {
-    padding: 8px 16px;
-    background: #0066cc;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .filters button:hover {
-    background: #004a99;
-  }
-  
-  /* Complaints Table */
   .complaints-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    table-layout: fixed; 
+    min-width: 100%;
   }
   
-  .complaints-table th, .complaints-table td {
+  .complaints-table th,
+  .complaints-table td {
     padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    text-align: center; 
+    border: 1px solid #ddd;
   }
-  
+ 
+.complaints-table td:first-child {
+  text-align: left;            
+  vertical-align: top;         
+  white-space: normal;
+  word-break: break-word;
+}
+
+.complaints-table td:first-child div {
+  margin-bottom: 4px;
+}
+
   .complaints-table th {
-    background: #0066cc;
-    color: white;
-    font-weight: 600;
-    font-size: 14px;
+    background-color: lightslategray;
+    font-weight: bold;
   }
   
   .complaints-table td {
-    color: #333;
-    font-size: 14px;
+    background-color: transparent;
   }
   
-  .complaints-table tr:nth-child(even) {
-    background: #f9f9f9;
+  .complaints-table th:nth-child(2),
+  .complaints-table td:nth-child(2) {
+    width: 40%; 
+    white-space: normal;
+    word-wrap: break-word; 
   }
   
-  .complaints-table tr:hover {
-    background: #eef2f5;
+  .complaints-table th:nth-child(4),
+  .complaints-table td:nth-child(4) {
+    width: 15%; 
   }
   
-  /* Status Dropdown */
-  .complaints-table select {
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background: #fff;
-  }
-  
-  /* Action Button */
   .complaints-table button {
-    padding: 6px 12px;
+    padding: 8px 12px;
+    background-color: #4caf50;
     color: white;
-    background: #28a745;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 13px;
-    transition: background 0.3s;
   }
   
   .complaints-table button:hover {
-    background: #218838;
+    background-color: #45a049;
   }
   
-  /* Responsive Design */
   @media (max-width: 768px) {
-    .filters {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  
-    .complaints-table th, .complaints-table td {
-      padding: 10px 8px;
-      font-size: 12px;
-    }
-  
-    .admin-dashboard h1 {
-      font-size: 20px;
+    .complaints-table th,
+    .complaints-table td {
+      padding: 8px; 
     }
   }
-  
+.graph-btn-container {
+  margin-top: 20px;
+}
+
+.graph-btn-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin-right:500px;
+  border: none;
+  cursor: pointer;
+}
+
+.graph-btn-container .btn:hover {
+  background-color: #45a049;
+}
+.complaints-table th:nth-child(1),
+.complaints-table td:nth-child(1) {
+  width: 8%;
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+  word-break: break-word;
+}
+.complaints-table th:nth-child(7),
+.complaints-table td:nth-child(7) {
+  width: 140px; 
+  position: relative; 
+}
