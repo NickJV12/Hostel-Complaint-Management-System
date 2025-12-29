@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
+  color: #cccccc;
+  opacity: 1;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* For WebKit browsers (Safari, Chrome) */
+input::-webkit-input-placeholder,
+select::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+
+/* For Firefox */
+input::-moz-placeholder,
+select::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+
+/* For Internet Explorer */
+input:-ms-input-placeholder,
+select:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+  background-size: 600% 600%;
+  animation: gradientFlow 15s ease infinite;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden; /* Prevent horizontal expansion */
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Container Box */
+.container {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  padding: 40px 35px;
+  border-radius: 20px;
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+
+.container:hover {
+  border-color: #4ECCA3;
+  box-shadow: 0 10px 40px rgba(78, 204, 163, 0.4);
+}
+
+.container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  background: linear-gradient(to right, #4ECCA3, #10f5f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Form Inputs & Dropdown */
+form input,
+form select {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border-radius: 12px;
+  border: none;
+  background-color: #2c2f48;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+form input:focus,
+form select:focus {
+  background-color: #383c5c;
+  outline: none;
+  box-shadow: 0 0 6px #4ECCA3;
+}
+
+/* Submit Button */
+.my-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 6px 20px rgba(0, 204, 255, 0.3);
+  transition: 0.3s ease;
+}
+
+.my-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 204, 255, 0.4);
+}
+
+/* Link Text */
+form p {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+form a {
+  color: #73ffd7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+form a:hover {
+  text-decoration: underline;
+}
+
+/* Popup Message */
+.popup {
+  background-color: rgba(255, 87, 87, 0.1);
+  border: 1px solid #ff4d4d;
+  color: #fff;
+  padding: 12px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.popup button {
+  margin-top: 10px;
+  background: #ff4d4d;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background: #ff1a1a;
+}
+form p {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #fff; /* 👈 Add this line */
+}
