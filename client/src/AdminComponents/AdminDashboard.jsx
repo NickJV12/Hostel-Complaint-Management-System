@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import "../Styles/AdminDashboard.css";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom"; // Add Link for navigation
-
-
+import { useNavigate, Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [complaints, setComplaints] = useState([]);
@@ -12,25 +9,18 @@ const AdminDashboard = () => {
   const [categoryFilter, setCategoryFilter] = useState("");
   const navigate = useNavigate();
 
-  
-
-  // Fetch complaints when the component is loaded
   useEffect(() => {
     fetchComplaints();
   }, [statusFilter, categoryFilter]);
 
   const fetchComplaints = async () => {
-
-    const hostel = localStorage.getItem("hostel"); // Get the hostel from localStorage
-
+    const hostel = localStorage.getItem("hostel");
 
     try {
-      const response = await Axios.get("http://localhost:8093/complaints/all", {
-        
+      const response = await Axios.get("https://hostel-complaint-management-webapp.onrender.com/complaints/all", {
         headers: {
-          hostel: hostel, //Send the hostel as a header
+          hostel: hostel,
         },
-        
         params: { status: statusFilter, category: categoryFilter },
       });
       setComplaints(response.data);
@@ -41,9 +31,10 @@ const AdminDashboard = () => {
 
   const handleUpdateStatus = async (id, newStatus, responseText) => {
     try {
-      await Axios.put(`http://localhost:8093/complaints/update/${id}`,
-        { status: newStatus, adminResponse: responseText }
-      );
+      await Axios.put(`https://hostel-complaint-management-webapp.onrender.com/complaints/update/${id}`, {
+        status: newStatus,
+        adminResponse: responseText,
+      });
       setComplaints((prevComplaints) =>
         prevComplaints.map((complaint) =>
           complaint._id === id
@@ -57,25 +48,23 @@ const AdminDashboard = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("adminId");// Use "adminId" instead of "adminToken"
-    localStorage.removeItem("hostel"); // Remove hostel info on logout
-    
-
-    //sessionStorage.removeItem("adminId");// Also clear from session storage, if used
-    navigate("/");// Redirect to main page
-  }
+    localStorage.removeItem("adminId");
+    localStorage.removeItem("hostel");
+    navigate("/");
+  };
 
   return (
     <div className="admin-dashboard">
       <h1>Admin Dashboard - Complaints Management</h1>
 
-      <div className="graph-btn-container">
-      <Link to="/complaints-graph">
-      <button className="btn btn-primary">View Complaints Graph</button>
-      </Link>
-       </div>
+      <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
+        <Link to="/complaints-graph">
+          <button style={{ padding: "10px 20px", backgroundColor: "#059669", color: "white", border: "none", borderRadius: "8px", fontWeight: "bold", cursor: "pointer" }}>
+            View Complaints Graph
+          </button>
+        </Link>
+      </div>
 
-      {/* Logout Button */}
       <div className="logout-container">
         <button className="logout-btn" onClick={handleLogout}>
           Logout
@@ -85,10 +74,7 @@ const AdminDashboard = () => {
       {/* Filters Section */}
       <div className="filters">
         <label>Status Filter:</label>
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-        >
+        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
           <option value="">All</option>
           <option value="pending">Pending</option>
           <option value="in-progress">In Progress</option>
@@ -96,17 +82,14 @@ const AdminDashboard = () => {
         </select>
 
         <label>Category Filter:</label>
-        <select
-          value={categoryFilter}
-          onChange={(e) => setCategoryFilter(e.target.value)}
-        >
+        <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
           <option value="">All</option>
-          <option value="maintenance">Maintenance</option>
-          <option value="cleaning">Cleaning</option>
-          <option value="other">Other</option>
-          <option value="water">Water</option>
-          <option value="noise">Noise</option>
-          <option value="electricity">Electricity</option>
+          <option value="Maintenance">Maintenance</option>
+          <option value="Cleanliness">Cleanliness</option>
+          <option value="Other">Other</option>
+          <option value="Water">Water</option>
+          <option value="Noise">Noise</option>
+          <option value="Electricity">Electricity</option>
         </select>
 
         <button className="apply-filter-btn">Apply Filters</button>
@@ -117,7 +100,7 @@ const AdminDashboard = () => {
         <table className="complaints-table">
           <thead>
             <tr>
-              <th>User ID</th>
+              <th>User Info</th>
               <th>Description</th>
               <th>Issue Type</th>
               <th>Date Submitted</th>
@@ -131,23 +114,27 @@ const AdminDashboard = () => {
             {complaints.length > 0 ? (
               complaints.map((complaint) => (
                 <tr key={complaint._id}>
-                  <td>{complaint.userId}</td>
+                  <td>
+                    {complaint.isAnonymous ? (
+                      <span>Anonymous User</span>
+                    ) : (
+                      <div style={{ lineHeight: "1.5" }}>
+                        <div><strong>Name:</strong> {complaint.userName}</div>
+                        <div><strong>Room:</strong> {complaint.roomNumber}</div>
+                        <div><strong>Email:</strong> {complaint.email}</div>
+                      </div>
+                    )}
+                  </td>
                   <td>{complaint.description}</td>
                   <td>{complaint.issueType}</td>
-                  <td>
-                    {new Date(complaint.createdAt).toLocaleDateString("en-US")}
-                  </td>
+                  <td>{new Date(complaint.createdAt).toLocaleDateString("en-US")}</td>
                   <td>{complaint.status}</td>
                   <td>{complaint.adminResponse || "No response"}</td>
                   <td>
                     <select
                       value={complaint.status}
                       onChange={(e) =>
-                        handleUpdateStatus(
-                          complaint._id,
-                          e.target.value,
-                          "Status updated by admin"
-                        )
+                        handleUpdateStatus(complaint._id, e.target.value, "Status updated by admin")
                       }
                     >
                       <option value="pending">Pending</option>
@@ -156,11 +143,7 @@ const AdminDashboard = () => {
                     </select>
                     <button
                       onClick={() =>
-                        handleUpdateStatus(
-                          complaint._id,
-                          "resolved",
-                          "Resolved by admin"
-                        )
+                        handleUpdateStatus(complaint._id, "resolved", "Resolved by admin")
                       }
                     >
                       Mark as Resolved
